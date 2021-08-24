@@ -10,7 +10,6 @@
 // le-fav-num kebob case in html when referencing css selectors
 
 
-
 // Primatives
 String
 Number
@@ -130,6 +129,71 @@ let cats = [{
 }]
 
 
+var students = [{
+  id: 129870423,
+  name: "Jimmy",
+  fullName: "Jimmy Bob",
+}, {
+  id: 129850840932848,
+  name: 'Joey',
+  fullName: 'Joey Bob'
+},{
+  id: 21879343,
+  name: "Phillip",
+  fullName: "Phillip Cheesy Steak"
+}]
+
+
+// REVIEW use the debugger to pause code execution and step through
+
+// TODO where does the array come from
+for(let i = 0; i < students.length; i++){
+  //    ^ incrementor
+  //           ^^^^^^^^^^^^^^^^^^ Conditional
+  //                                ^ post iterative action
+
+  // what is your name?
+  console.log("the time is", Date.now())
+  console.log(students[i].name)
+}
+
+
+
+
+function showPeopleWithNameThatStartsWith(letter, persons){
+  for (let i = 0; i < persons.length; i++) {
+    const person = persons[i];
+    if(person.name.startsWith(letter)){ 
+      console.log(`
+      <div>
+        <h1>${person.name}</h1>
+        <sup>${person.id}</sup>
+        <p>${person.bio}</p>
+      </div>
+      `)
+    } 
+  }
+}
+
+let jim = students.find(student => student.name.startsWith("Jim"))
+let joshes = students.filter(student => student.name === "Josh")
+students.forEach(student => {
+  student.cohort = "fall21"
+})
+
+
+// destructive
+students.splice
+students.pop
+students.shift
+students.unshift
+students.push
+students.sort
+
+
+
+
+
 
 
 
@@ -138,7 +202,61 @@ const FAVNUM = 7 // constants cannot be redifined
 
 // FUNCTIONS
 // HOISTING handles all declarations first then runs back to do execution
+
+
+/**
+ * @param {{name: string}} person
+*/
+function greet(person){
+  document.querySelector('body #student').innerHTML = `<b>Hello ${person.name}</b>`
+}
+greet({name:"Jake"})
+
+
+function drawStudents(){
+  let template = ''
+  students.forEach(student => {
+    template += `
+    <div class="col-lg-4">
+      <div class="card p-3">
+          <h1>${student.name}</h1>
+          <p>
+            <em>${student.id}</em>
+          </p>
+      </div>
+    </div>
+      `
+  })
+
+  document.getElementById('students').innerHTML = template
+}
+
+
+
+function toggleDebug(){
+  
+  if(document.body.style.backgroundColor === "orange"){
+    document.body.style.backgroundColor = ""
+  }else{
+    document.body.style.backgroundColor = "orange"
+  }
+  document.body.classList.toggle('debug')
+}
+
+
+
+
 function add(x,y){
   //         ^ ^ parameters
   return x+y
 }
+
+// Dictionary
+// var students = {
+//   billy: {},
+//   tom: {}
+// }
+
+
+
+drawStudents()
